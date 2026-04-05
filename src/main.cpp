@@ -1,18 +1,28 @@
 #include <Arduino.h>
 
-// put function declarations here:
-int myFunction(int, int);
+#define LED_RED 18
+#define LED_BLUE 16
+
+void blinkLed(int, int, int, int);
 
 void setup() {
-  // put your setup code here, to run once:
-  int result = myFunction(2, 3);
+  pinMode(LED_RED, OUTPUT);
+  pinMode(LED_BLUE, OUTPUT);
 }
 
 void loop() {
-  // put your main code here, to run repeatedly:
+  blinkLed(LED_RED, 2, 120, 100);
+  delay(150);
+
+  blinkLed(LED_BLUE, 2, 120, 100);
+  delay(150);
 }
 
-// put function definitions here:
-int myFunction(int x, int y) {
-  return x + y;
+void blinkLed(int pin, int times, int onDelay, int offDelay) {
+  for (int i = 0; i < times; i++) {
+    digitalWrite(pin, HIGH);
+    delay(onDelay);
+    digitalWrite(pin, LOW);
+    delay(offDelay);
+  }
 }
